@@ -3,16 +3,6 @@ const server = express();
 
 const db = require('./db');
 
-const ideas = [
-  {
-    img: 'https://image.flaticon.com/icons/svg/2729/2729048.svg',
-    title: 'Recortes',
-    category: 'Criatividade',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-    url: 'http://rocketseat.com.br',
-  },
-];
-
 server.use(express.static('public'));
 
 server.use(express.urlencoded({ extended: true }));
@@ -67,6 +57,19 @@ server.post('/', (req, res) => {
   ];
 
   db.run(query, values, (error) => {
+    if (error) {
+      console.log(error);
+      res.send('Erro no banco de dados');
+    }
+
+    return res.redirect('/ideias');
+  });
+});
+
+server.get('/ideas/delete/:id', (req, res) => {
+  const { id } = req.params;
+
+  db.run(`DELETE FROM ideas WHERE id = ?`, [id], (error) => {
     if (error) {
       console.log(error);
       res.send('Erro no banco de dados');

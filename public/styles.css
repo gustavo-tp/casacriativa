@@ -105,9 +105,26 @@ footer a {
   margin-bottom: 32px;
 }
 
+.idea .content {
+  position: relative;
+  width: 100%;
+}
+
 .idea img {
   height: 60px;
   margin-right: 32px;
+}
+
+.idea a.deleteButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.idea a.deleteButton img {
+  height: 23px;
+  margin: 0;
 }
 
 .idea h3 {
